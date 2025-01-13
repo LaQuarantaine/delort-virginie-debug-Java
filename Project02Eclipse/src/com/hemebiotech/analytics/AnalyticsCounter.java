@@ -41,24 +41,8 @@ public class AnalyticsCounter {
         writer.writeSymptoms(symptoms);
      }
     
-    
-	public static void main(String args[]) {
-	
-		ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile("C:\\Users\\cvign\\Documents\\delort-virginie-debug-Java\\Project02Eclipse\\symptoms.txt");
-		WriteSymptomDataToFile writer = new WriteSymptomDataToFile ("C:\\Users\\cvign\\Documents\\delort-virginie-debug-Java\\Project02Eclipse\\src\\result.out");
-		AnalyticsCounter ac = new AnalyticsCounter(reader, writer);
-		
-		List<String> symptoms = ac.getSymptoms();
-		ac.countSymptoms(symptoms);
-		
-		Map<String, Integer> countSymptoms = ac.countSymptoms(symptoms);
-		
-		Map<String, Integer> sortSymptoms = ac.sortSymptoms(countSymptoms);
-		
-		writer.writeSymptoms(sortSymptoms);
-		
-		}
-	}	
+   
+}	
        	
 		
 
