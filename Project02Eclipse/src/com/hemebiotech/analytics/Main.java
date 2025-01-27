@@ -12,13 +12,11 @@ public class Main {
 		AnalyticsCounter ac = new AnalyticsCounter(reader, writer);
 			
 		List<String> symptoms = ac.getSymptoms();
-		ac.countSymptoms(symptoms);
-			
+		
 		Map<String, Integer> countSymptoms = ac.countSymptoms(symptoms);
-			
+		
 		Map<String, Integer> sortSymptoms = ac.sortSymptoms(countSymptoms);
-			
-		writer.writeSymptoms(sortSymptoms);
-			
-			}
+		
+		writer.writeSymptoms(sortSymptoms);	
+	}
 }

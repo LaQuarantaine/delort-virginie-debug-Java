@@ -1,6 +1,7 @@
 package com.hemebiotech.analytics;
 
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,8 +15,14 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 		this.filepath = filepath;
 	}
 	
-
-    
+	/**
+	 * Cette méthode implémente l'interface ISymptomWriter.
+	 * écriture sur un fichier de sortie
+	 * @param Map<String, Integer> symptoms
+	 * @return void / ne retourne rien
+	 * @throws peut soulever 2 types d'exceptions 
+	 */
+	
 	@Override
 	public void writeSymptoms(Map<String, Integer> symptoms) {
         
@@ -25,11 +32,19 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
                 writer.newLine();
             }
         } 
-		catch (IOException e) {
-            e.printStackTrace();
-        }
+		
+		catch (FileNotFoundException e) {
+            System.out.println("Erreur : Le fichier de destination n'existe pas.");
+            e.printStackTrace();  
+			}
+		
+		catch (IOException e) { 
+			System.out.println("Erreur : ");
+			e.printStackTrace();
+		} 
+		
+   }
 
-	}
-	
 }
+
 

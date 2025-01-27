@@ -1,8 +1,5 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,32 +8,45 @@ import java.util.TreeMap;
 
 public class AnalyticsCounter {
 
-    private ISymptomReader reader; //attribut de la classe
-    private ISymptomWriter writer; //attribut de la classe
+    private ISymptomReader reader; 
+    private ISymptomWriter writer; 
     
-    public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer) { //constructeur avec 2 objets en paramètres (ISymptomReader et ISymptomWriter)
-        this.reader = reader; //permet de réunir au sein d'un seul objet les propriétés de reader et de writer
-        this.writer = writer;
-    }
-        
-    public List<String> getSymptoms() {  //appel à la méthode getSymptoms. Possible car méthode déclarée public
-        return reader.getSymptoms();  //retour d'une List liée à l'objet reader et selon la méthode getSymptoms
+    public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer) { 
+        this.reader = reader; 
+        this.writer = writer; 
     }
 
-     public Map<String, Integer> countSymptoms(List<String> symptoms) { 
-        Map<String, Integer> countSymptoms = new HashMap<>();	//création d'1 instance HashMap qui contiendra la List symptoms au format Map (passage d'une List à une Map)
-        for (String symptom : symptoms) {	//pour chaque clé String de la Map, parcourir la list symptoms				
-        	countSymptoms.put(symptom, countSymptoms.getOrDefault(symptom, 0) + 1); //pour chaque clé, vérifie s'il existe et ajoute 1 si existe déjà
-            }
-        return countSymptoms; //renvoi une instance HashMap sur la base de la List symptoms avec une occurence par clé lue par la Map
-      }
-        
-        
-     public Map<String, Integer> sortSymptoms(Map<String, Integer> compteur) { 
-        Map<String, Integer> sortSymptoms = new TreeMap<>(compteur); //création d'une instance TreeMap qui permet le tri d'une Map
-        return sortSymptoms; //récupère les données de la HashMap et les retournent triées grace à TreeMap
+    public List<String> getSymptoms() {  
+        return reader.getSymptoms();  
+    }
+    /**
+	 * Cette méthode transforme une liste en une collection 
+	 * elle compte les occurences de chaque symptôme
+	 * @param List<String>
+	 * @return Map<String, Integer>
+	 */
+    
+    public Map<String, Integer> countSymptoms (List<String>symptoms){
+    	Map<String, Integer> countSymptoms = new HashMap<>();	
+    		for (String symptom : symptoms) {		
+    		countSymptoms.put(symptom, countSymptoms.getOrDefault(symptom, 0) + 1);
+    		}
+    		return countSymptoms;
+    		}
+    
+    /**
+	 * Cette méthode transforme une HashMap en TreeMap
+	 * elle permet de bénéficier du tri naturel de TreeMap
+	 * @param Map<String, Integer> symptoms
+	 * @return Map<String, Integer> sortSymptoms
+	 */
+    
+     public Map<String, Integer> sortSymptoms(Map<String, Integer> symptoms) { 
+        Map<String, Integer> sortSymptoms = new TreeMap<>(symptoms); 
+       		return sortSymptoms; 
      }
-        
+  
+     
      public void writeSymptoms(Map<String, Integer> symptoms) { 
         writer.writeSymptoms(symptoms);
      }
