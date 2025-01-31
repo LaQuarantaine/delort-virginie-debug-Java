@@ -22,21 +22,21 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	 * @return void / ne retourne rien
 	 * @throws peut soulever 2 types d'exceptions 
 	 */
-	
 	@Override
 	public void writeSymptoms(Map<String, Integer> symptoms) {
         
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\cvign\\Documents\\delort-virginie-debug-Java\\Project02Eclipse\\src\\result.out"))) {
-            for (Map.Entry<String, Integer> entry : symptoms.entrySet()) {
-                writer.write(entry.getKey() + " : " + entry.getValue());
-                writer.newLine();
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))) {
+			
+			for (Map.Entry<String, Integer> entry : symptoms.entrySet()) {
+            		writer.write(entry.getKey() + " : " + entry.getValue());
+            		writer.newLine();
             }
         } 
 		
 		catch (FileNotFoundException e) {
             System.out.println("Erreur : Le fichier de destination n'existe pas.");
             e.printStackTrace();  
-			}
+		}
 		
 		catch (IOException e) { 
 			System.out.println("Erreur : ");

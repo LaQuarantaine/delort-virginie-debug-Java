@@ -23,14 +23,12 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 * @return une liste de String
 	 * @throws peut soulever 2 types d'exceptions 
 	 */
-	
 	@Override
 	public List<String> getSymptoms() {		
 		ArrayList<String> result = new ArrayList<String>();
 		
 		if (filepath != null) {
-			try {
-				BufferedReader reader = new BufferedReader (new FileReader(filepath));
+			try (BufferedReader reader = new BufferedReader (new FileReader(filepath))) {
 				
 				String line = reader.readLine();
 			
@@ -43,14 +41,12 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 						line = reader.readLine();
 					}
 				}
-				
-				reader.close();
-				
-			} 
+			}
+			
 			catch (FileNotFoundException e) {
 	            System.out.println("Erreur : Le fichier spécifié n'existe pas.");
 	            e.printStackTrace();  
-				}
+			}
 			
 			catch (IOException e) { 
 				System.out.println("Erreur : ");
