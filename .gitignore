@@ -1,1 +1,7 @@
 /bin/
+*.class
+.classpath
+.project
+symptoms.txt
+result.out
+
